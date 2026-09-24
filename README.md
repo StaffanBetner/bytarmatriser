@@ -62,9 +62,9 @@ Tack vare total unimodularitet i transportproblemet ger LP-lösningen strikta he
 När du startar en ny chatt (och laddar upp bilderna/tabellerna för ett nytt valpar, t.ex. 2002/2006 eller 1998/2002), klistra bara in följande prompt:
 
 ```text
-Här är underlag över väljarströmmarna mellan två val, t.ex. riksdagsvalen [ÅR 1] och [ÅR 2] från exempelvis Valundersökningen eller VALU.
+Här är underlag över väljarströmmarna mellan två val, t.ex. riksdagsvalen [ÅR 1] och [ÅR 2], eller samtidiga val på olika nivåer (t.ex. riksdag × kommun eller riksdag × europaparlament) från exempelvis Valundersökningen eller VALU.
 
-Målet är att ta fram den underliggande korstabellen (bytarmatrisen) i faktiskt antal svarande individer (stickprovsantal) via kalibrering (IPF) och (bi)proportionell heltalsavrundning.
+Målet är att ta fram den underliggande korstabellen (bytarmatrisen) i faktiskt antal svarande individer (stickprovsantal) via kalibrering (IPF) och biproportionell heltalsavrundning. Rad- och kolumnkategorier behöver inte vara identiska (hantera rektangulära matriser m × n vid t.ex. lokala partier).
 
 GRUNDREGEL ("LÖS PROBLEMET MED DET SOM FINNS"):
 Om underlaget är ofullständigt (t.ex. om den ena marginalen helt saknas), stanna INTE upp och be om mer data. Genomför istället beräkningen pragmatiskt genom att härleda saknade värden matematiskt ur det befintliga materialet enligt instruktionerna nedan.
@@ -76,12 +76,12 @@ Om underlaget är ofullständigt (t.ex. om den ena marginalen helt saknas), stan
    - TYP B (En korstabell + separat marginalfördelning):
      Hämta tabellens kända basmarginal (t.ex. R) och hämta den andra marginalen (C) från den separata stickprovsredovisningen (omvandla från % till heltal mot N om nödvändigt).
    - TYP C (Enbart EN korstabell och inga externa marginaler alls):
-     1. Ta tabellens kända basmarginal (t.ex. R) och dess total N.
-     2. Kompensera för tryckta procentavrundningar genom att beräkna initiala cellvärden som M_ij = R_i × (p_ij / ∑_j p_ij), så att raderna summerar exakt till R_i.
-     3. Härled de implicita kolumnmarginalerna som kolumnsummorna: C_j_float = ∑_i M_ij.
-     4. Avrunda C_j_float till heltal (C_j) med största restens metod (Hamilton) så att ∑C_j = N.
+     1. Ta tabellens kända basmarginal (antingen radmarginal R eller kolumnmarginal C) och dess total N.
+     2. Kompensera för tryckta procentavrundningar genom att beräkna initiala cellvärden som M_ij = R_i × (p_ij / ∑_j p_ij) vid radprocent (eller M_ij = C_j × (p_ij / ∑_i p_ij) vid kolumnprocent).
+     3. Härled den saknade marginalen som summorna av de initiala cellvärdena (t.ex. C_j_float = ∑_i M_ij).
+     4. Avrunda den härledda marginalen till heltal med största restens metod (Hamilton) så att totalsumman blir exakt N.
 
-   Harmonisering: Säkerställ alltid att ∑R = ∑C = N. Vid små diskrepanser mellan källor, harmonisera mot det senaste valets totala N.
+   Harmonisering: Säkerställ alltid att ∑R = ∑C = N. Vid små diskrepanser mellan källor, harmonisera mot kolumntotalen (eller det senaste / primära valet i undersökningen).
 
 2. IPF-kalibrering (Iterative Proportional Fitting):
    - Vid Typ A (Två tabeller): Tillämpa trestegsraketen (raka tabell 1 och tabell 2 separat mot R och C, beräkna medelvärdet av de två kalibrerade matriserna, och raka slutmatrisen en sista gång mot R och C).
@@ -94,4 +94,4 @@ Om underlaget är ofullständigt (t.ex. om den ena marginalen helt saknas), stan
 Leverera:
 1. Identifierad underlagstyp (A, B eller C) och de fastställda marginalerna R och C.
 2. Den slutliga heltalskorstabellen som en Markdown-tabell samt Markdowntabellen i ett rått kodblock.
-
+```
