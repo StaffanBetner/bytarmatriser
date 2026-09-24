@@ -62,25 +62,36 @@ Tack vare total unimodularitet i transportproblemet ger LP-lösningen strikta he
 När du startar en ny chatt (och laddar upp bilderna/tabellerna för ett nytt valpar, t.ex. 2002/2006 eller 1998/2002), klistra bara in följande prompt:
 
 ```text
-Här är tabeller över väljarströmmarna mellan riksdagsvalen [ÅR 1] och [ÅR 2] från Valundersökningen.
+Här är underlag över väljarströmmarna mellan två val, t.ex. riksdagsvalen [ÅR 1] och [ÅR 2] från exempelvis Valundersökningen eller VALU.
 
-Jag vill ta fram den underliggande korstabellen (bytarmatrisen) i faktiskt antal svarande individer (stickprovsantal) i en trestegsraket med biproportionell heltalsavrundning:
+Målet är att ta fram den underliggande korstabellen (bytarmatrisen) i faktiskt antal svarande individer (stickprovsantal) via kalibrering (IPF) och (bi)proportionell heltalsavrundning.
 
-1. Marginaler:
-   - Identifiera radmarginalerna (R = antal svarande per kategori val [ÅR 1]).
-   - Identifiera kolumnmarginalerna (C = antal svarande per kategori val [ÅR 2] i stickprovet, ej valresultatet).
-   - Om det finns en liten diskrepans i N mellan tabellerna, harmonisera radmarginalerna proportionellt mot kolumntotalen.
+GRUNDREGEL ("LÖS PROBLEMET MED DET SOM FINNS"):
+Om underlaget är ofullständigt (t.ex. om den ena marginalen helt saknas), stanna INTE upp och be om mer data. Genomför istället beräkningen pragmatiskt genom att härleda saknade värden matematiskt ur det befintliga materialet enligt instruktionerna nedan.
 
-2. Trestegsraketen (IPF):
-   - Steg 1: Raka de bägge tabellerna (radvis och kolumnvis) separat mot de kända marginalerna R och C med Iterative Proportional Fitting.
-   - Steg 2: Ta det aritmetiska medelvärdet av de två kalibrerade matriserna för att minimera avrundningsfel från källans tryckta procenttal.
-   - Steg 3: Raka den resulterande matrisen en sista gång mot marginalerna för fullständig numerisk konvergens.
-   (Om endast en övergångstabell finns, raka den direkt mot rad- och kolumnmarginalerna).
+1. Identifiera underlagstyp och fastställ marginalerna (R och C):
+   Identifiera först vilken typ av underlag som givits:
+   - TYP A (Två korstabeller, t.ex. rad- och kolumnprocent):
+     Hämta radmarginalerna R från radtabellen och kolumnmarginalerna C från kolumntabellen.
+   - TYP B (En korstabell + separat marginalfördelning):
+     Hämta tabellens kända basmarginal (t.ex. R) och hämta den andra marginalen (C) från den separata stickprovsredovisningen (omvandla från % till heltal mot N om nödvändigt).
+   - TYP C (Enbart EN korstabell och inga externa marginaler alls):
+     1. Ta tabellens kända basmarginal (t.ex. R) och dess total N.
+     2. Kompensera för tryckta procentavrundningar genom att beräkna initiala cellvärden som M_ij = R_i × (p_ij / ∑_j p_ij), så att raderna summerar exakt till R_i.
+     3. Härled de implicita kolumnmarginalerna som kolumnsummorna: C_j_float = ∑_i M_ij.
+     4. Avrunda C_j_float till heltal (C_j) med största restens metod (Hamilton) så att ∑C_j = N.
 
-3. Slutlig heltalsmatris:
-   - Gör en biproportionell heltalsavrundning (controlled rounding / transportproblem) så att varje enskild radsumma och kolumnsumma matchar marginalerna exakt på heltalet, och strukturella nollor (0,0 %) bevaras som 0.
+   Harmonisering: Säkerställ alltid att ∑R = ∑C = N. Vid små diskrepanser mellan källor, harmonisera mot det senaste valets totala N.
+
+2. IPF-kalibrering (Iterative Proportional Fitting):
+   - Vid Typ A (Två tabeller): Tillämpa trestegsraketen (raka tabell 1 och tabell 2 separat mot R och C, beräkna medelvärdet av de två kalibrerade matriserna, och raka slutmatrisen en sista gång mot R och C).
+   - Vid Typ B och C (En tabell): Raka startmatrisen M iterativt mot marginalerna R och C tills full numerisk konvergens uppnås mot bägge marginaler samtidigt.
+
+3. Slutlig heltalsmatris (Controlled Rounding):
+   - Utför en biproportionell heltalsavrundning (controlled rounding via transportproblem/LP) så att varje enskild rad- och kolumnsumma matchar marginalerna R och C exakt på heltalet.
+   - Strukturella nollor (0 % eller tomma celler i källan) SKA bevaras som exakta nollor (0).
 
 Leverera:
-1. Den beräknade matrisen med 1 decimal.
-2. Den slutliga heltalskorstabellen formaterad som en snygg Markdown-tabell (samt i ett rått kopierbart kodblock).
-```
+1. Identifierad underlagstyp (A, B eller C) och de fastställda marginalerna R och C.
+2. Den slutliga heltalskorstabellen som en Markdown-tabell samt Markdowntabellen i ett rått kodblock.
+
