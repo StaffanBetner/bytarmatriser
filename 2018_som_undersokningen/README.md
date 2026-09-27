@@ -2,13 +2,13 @@
 
 ## Källa
 
-Berg, Linda, Gissur Ó. Erlingsson och Henrik Ekengren Oscarsson. 2019. ”Rekordhög röstdelning.” I *Storm och stiltje: SOM-undersökningen 2018*, s. 93–105. **Tabell 5 på s. 103:** ”Hur röstade riksdagsväljarna i kommunvalet 2018? Andelen röstande på kommunala partier efter röstning i riksdagsvalet (procent).” Källan till tabellen anges som Den nationella SOM-undersökningen 2018. Uppgifterna här bygger på den tillhandahållna bilden av tabellen.
+Berg, Linda, Gissur Ó. Erlingsson och Henrik Ekengren Oscarsson. 2019. ”Rekordhög röstdelning.” I *Storm och stiltje: SOM-undersökningen 2018*, s. 93–105. **Tabell 5, s. 103:** ”Hur röstade riksdagsväljarna i kommunvalet 2018? Andelen röstande på kommunala partier efter röstning i riksdagsvalet (procent).” Uppgifterna bygger på den tillhandahållna tabellbilden.
 
-Detta är en **annan undersökning** än [Valundersökningen 2018](../2018_valundersokningen/README.md). Raderna avser partival i **riksdagsvalet 2018** och kolumnerna partival i **kommunvalet 2018**. Kolumnen ”Övrigt” motsvarar källans ”Övrigt” i kommunvalet, inte ett visst parti.
+Detta är **en annan undersökning** än [Valundersökningen 2018](../2018_valundersokningen/README.md): raderna avser riksdagsvalet, kolumnerna kommunvalet **samma år**. ”Övrigt” i kommunvalet är ingen enskild partibeteckning.
 
 ## Rekonstruktion
 
-[Riksdagsval 2018 × kommunval 2018](rd2018_kommun2018_partival.md) är en **uppskattad heltalsmatris** med totalt $N=8\,498$ modellposter. Tabell 5 redovisar radprocent som heltal och ett antal svar för varje rad, men inga cellantal eller kolumnmarginaler. Summan 8 498 är summan av de **publicerade radantalen**, inte en fristående uppgift om undersökningens totala antal svarande.
+[Riksdagsval 2018 × kommunval 2018](rd2018_kommun2018_partival.md) är en **rekonstruktion** från tabell 5:s heltalsprocent och publicerade radantal, vars summa är **8 498**. Cellantal och kolumnmarginaler saknas i källan; 8 498 är inte ett redovisat antal för hela SOM-undersökningen.
 
 | Partival i riksdagsvalet | Publicerat antal | Kommunval: V, S, MP, FI, C, L, M, KD, SD, Övrigt (%) |
 | :--- | ---: | :--- |
@@ -23,6 +23,6 @@ Detta är en **annan undersökning** än [Valundersökningen 2018](../2018_valun
 | Sverigedemokraterna | 1 104 | 1, 5, 0, 0, 3, 2, 15, 4, 64, 6 |
 | Övrigt parti | 95 | 1, 3, 0, 0, 6, 2, 10, 6, 20, 52 |
 
-Varje radprocentserie summerar till 100. För varje rad multiplicerades publicerat antal svar med respektive procentandel. Cellerna avrundades sedan till heltal med **största restens metod** så att varje rad exakt motsvarar sitt publicerade antal. Vid lika stora rester går företrädet till den kolumn som står först i källan. **Kolumnsummorna är härledda**, inte publicerade marginaler; ingen anpassning till partiernas valresultat har gjorts.
+Varje procentserie summerar till 100. Radantalen multiplicerades med procenten och cellerna avrundades med **största restens metod** (lika rester: kolumnordning). Varje rad summerar till sitt publicerade antal; **kolumnsummorna är beräknade**, utan kalibrering mot valresultat.
 
-Procenttalen är publicerade utan decimaler, så de uppskattade cellerna kan avvika från de faktiska antal svarande. Ett tryckt 0 % är **inte bevis för att ingen respondent fanns i cellen**, även om metoden ger noll där. Källans parenteser för hela raden Feministiskt initiativ markerar att skattningarna bygger på **färre än 50 personer** (publicerat radantal: 48). Dessa celler är särskilt osäkra. Bildens kommentar hänvisar även till en kommentar till tabell 4, som inte ingår i det tillhandahållna underlaget. Se [metodanteckningarna](../METOD.md).
+Heltalsavrundade procent innebär att cellerna **inte är verifierade individsvar**; 0 % kan dölja svarande. Källans parenteser markerar att raden Feministiskt initiativ bygger på **färre än 50 personer** (48), så dess celler är särskilt osäkra. Bilden hänvisar till en kommentar till tabell 4 som saknas i underlaget. Se [metodanteckningarna](../METOD.md).
