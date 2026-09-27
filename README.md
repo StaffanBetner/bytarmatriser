@@ -13,6 +13,7 @@ Antalen avser undersökningens svarande, inte väljare i befolkningen. En tabell
 
 | Studie | Källa och tabellernas status | Korstabeller |
 | :--- | :--- | :--- |
+| Valundersökningen 2002 | [Holmberg & Oscarsson (2004), tabell 3](2002_valundersokningen/README.md) | [Partival 1998 × 2002](2002_valundersokningen/rd1998_rd2002_partival.md) – uppskattade heltal från radprocent och publicerade radantal. |
 | Valundersökningen 2006 | [Oscarsson & Holmberg (2008), tabell 2.1](2006_valundersokningen/README.md) | [Partival 2002 × 2006](2006_valundersokningen/rd2002_rd2006_partival.md) – uppskattade heltal från radprocent och publicerade radantal. |
 | Valundersökningen 2010 | [Oscarsson & Holmberg (2011), tabell 14 och A.1](2010_valundersokningen/README.md) | [Partival 2006 × 2010](2010_valundersokningen/rd2006_rd2010_partival.md) |
 | Valundersökningen 2014 | [Oscarsson (2016), tabell 2–3](2014_valundersokningen/README.md) | [Partival 2010 × 2014](2014_valundersokningen/rd2010_rd2014_partival.md) |
