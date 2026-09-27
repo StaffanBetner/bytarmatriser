@@ -14,7 +14,7 @@ När källan redovisar stickprovsantal gäller de svarande i det aktuella urvale
 | Studie | Källa och tabellernas status | Korstabeller |
 | :--- | :--- | :--- |
 | Valundersökningen 2010 | [Studienotering – referens saknas](2010_valundersokningen/README.md) | [Partival 2006 × 2010](2010_valundersokningen/rd2006_rd2010_partival.md) |
-| Valundersökningen 2014 | [Studienotering – referens saknas](2014_valundersokningen/README.md) | [Partival 2010 × 2014](2014_valundersokningen/rd2010_rd2014_partival.md) |
+| Valundersökningen 2014 | [Oscarsson (2016), tabell 2–3](2014_valundersokningen/README.md) | [Partival 2010 × 2014](2014_valundersokningen/rd2010_rd2014_partival.md) |
 | Valundersökningen 2018 | [Oscarsson (2020), tabell 5–6](2018_valundersokningen/README.md) | [Partival 2014 × 2018](2018_valundersokningen/rd2014_rd2018_partival.md) |
 | Nationella SOM-undersökningen 2018 | [Berg, Erlingsson & Oscarsson (2019), tabell 5](2018_som_undersokningen/README.md) | [Riksdagsval 2018 × kommunval 2018](2018_som_undersokningen/rd2018_kommun2018_partival.md) – heltal uppskattade från radprocent och publicerade radantal. |
 | Valundersökningen 2022 | [Oscarsson m.fl. (2024): källa och tabellförteckning](2022_valundersokningen/README.md) | [Partival 2018 × 2022](2022_valundersokningen/rd2018_rd2022_partival.md); fler korsningar ur bilaga A.1 listas i studienoteringen. |
