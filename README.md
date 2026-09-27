@@ -1,97 +1,29 @@
-Återskapat till stickprovsantal med hjälp av t.ex. Gemini 3.8 Flash. Dubbelraking med biproportionell avrundning
+# Korstabeller från svenska valundersökningar
 
+Det här repot samlar **korstabeller i stickprovsantal** från undersökningar om svenska val. Målet är att samla många slags korsningar mellan partival och andra variabler: partival vid två val, demografi, social bakgrund, politiskt intresse, kunskap och andra redovisade grupper. Det är alltså inte enbart ett arkiv över väljarbyten. Nya korsningar läggs till efter hand när användbart källmaterial finns.
 
-# Metodbeskrivning: Rekonstruktion av bytarmatriser till stickprovsantal
+Tabellerna innehåller heltal på två sätt:
 
-### Syfte
-Att ur Valforskningsprogrammets/SCB:s publicerade procenttabeller (övergångsmatriser och balansräkningar) rekonstruera den underliggande diskreta kontingenstabellen i **antal svarande individer ($N$)** så att:
-1. Samtliga radsummor matchar stickprovets kända antal per kategori vid val $t-1$.
-2. Samtliga kolumnsummor matchar stickprovets kända antal per kategori vid val $t$.
-3. Oddskvoterna och övergångssannolikheterna från grundmaterialet bevaras med minimal informationsförlust.
-4. Strukturella nollor bevaras ($0{,}0\,\% \to 0$ observationer).
-5. Tabellen avrundas till heltal utan att bryta marginalsummorna.
+- **Direkt publicerade antal:** antalen finns i källan och förs över till separata korstabeller. Bilaga A.1 till Valundersökningen 2022 är ett exempel.
+- **Rekonstruerade antal:** cellerna uppskattas från publicerade procenttabeller och tillgängliga stickprovsmarginaler. De är **inte** observerade mikrodata, även när de har exakta marginaler. Se [metodanteckningarna](METOD.md).
 
----
+När källan redovisar stickprovsantal gäller de svarande i det aktuella urvalet, inte antal väljare i befolkningen. Om **den gemensamma svarandebasen saknas** men ett antal för hela undersökningen finns kan en tabell i stället vara **syntetiska heltal på en antagen $N$-skala**; dessa är uttryckligen märkta och är inte faktiska antal svarande på båda frågorna. Olika tabeller, även från samma undersökning, kan ha olika $N$ på grund av urval, frågor eller bortfall. Procent i originalpublikationen kan vara viktade och behöver inte gå att räkna fram genom att dividera dessa heltal. Jämför därför inte tabellernas marginaler som om de avsåg samma respondentgrupp utan att kontrollera studiens källnotering.
 
-### Databehov (två typfall i källmaterialet)
+## Studier och tabeller
 
-* **Typfall A (Standard, t.ex. 2014/2018 och 2018/2022):**
-  * **Tabell 1 (Radvis):** *"Vart tog väljarna vägen?"* – ger övergångsprocenten $P(\text{val}_t \mid \text{val}_{t-1})$ samt radmarginalerna ($n_{\text{rad}}$).
-  * **Tabell 2 (Kolumnvis):** *"Varifrån kom väljarna?"* – ger inflödesprocenten $P(\text{val}_{t-1} \mid \text{val}_t)$ samt kolumnmarginalerna ($n_{\text{kol}}$).
-* **Typfall B (Enkel övergångstabell, t.ex. 2006/2010):**
-  * **Tabell 1:** Radvis övergångstabell med radmarginaler ($n_{\text{rad}}$).
-  * **Tabell 2 (eller bilaga/A.1):** Urvalsfördelningen i stickprovet vid val $t$, vilken etablerar kolumnmarginalerna ($n_{\text{kol}}$).
+| Studie | Källa och tabellernas status | Korstabeller |
+| :--- | :--- | :--- |
+| Valundersökningen 2010 | [Studienotering – referens saknas](2010_valundersokningen/README.md) | [Partival 2006 × 2010](2010_valundersokningen/rd2006_rd2010_partival.md) |
+| Valundersökningen 2014 | [Studienotering – referens saknas](2014_valundersokningen/README.md) | [Partival 2010 × 2014](2014_valundersokningen/rd2010_rd2014_partival.md) |
+| Valundersökningen 2018 | [Oscarsson (2020), tabell 5–6](2018_valundersokningen/README.md) | [Partival 2014 × 2018](2018_valundersokningen/rd2014_rd2018_partival.md) |
+| Nationella SOM-undersökningen 2018 | [Berg, Erlingsson & Oscarsson (2019), tabell 5](2018_som_undersokningen/README.md) | [Riksdagsval 2018 × kommunval 2018](2018_som_undersokningen/rd2018_kommun2018_partival.md) – heltal uppskattade från radprocent och publicerade radantal. |
+| Valundersökningen 2022 | [Oscarsson m.fl. (2024): källa och tabellförteckning](2022_valundersokningen/README.md) | [Partival 2018 × 2022](2022_valundersokningen/rd2018_rd2022_partival.md); fler korsningar ur bilaga A.1 listas i studienoteringen. |
+| Novus väljarbarometer juli 2026 | [Studienotering: Globeknot/Novus, julimätningen](2026-07_novus_valjarbarometer/README.md) | [Religion × partisympati](2026-07_novus_valjarbarometer/religion_partisympati.md) – syntetiska heltal på uppskattad skala 5 652 efter avdrag för osäkra partiväljare, **inte** observerade cellantal. |
+| VALU 2026 | [Studienotering – exakt utgåva saknas](2026_valu/README.md) | [Partival 2022 × 2026](2026_valu/rd2022_rd2026_partival.md) |
 
----
+## Organisation och dokumentation
 
-### Den matematiska algoritmen
+En mapp per studie och källa namnges `<studieår>_<källa>` (med månad efter årtalet för månadsmätningar). Studiemappens README ger fullständig källhänvisning när den är känd, originaltabell och sida, länk till varje korstabell, om antalen är **publicerade eller rekonstruerade**, samt viktiga avgränsningar. Varje övrig Markdownfil i mappen innehåller **bara en korstabell**. Radernas variabel kommer först i filnamnet, kolumnernas sist: `rd2018_rd2022_partival.md` har partival 2018 på raderna och partival 2022 på kolumnerna. Samma mönster används för andra korsningar, till exempel kön × partival 2022. Studieåret i mappnamnet anger när undersökningen genomfördes, inte nödvändigtvis året i båda variablerna.
 
-#### Steg 1: Dubbel raking (Iterative Proportional Fitting, IPF)
-När två procenttabeller finns tillgängliga skalas de först till initiala antalsmatriser:
-$$T_{1,ij} = P_{\text{rad}, ij} \times \frac{R_i}{100}, \qquad T_{2,ij} = P_{\text{kol}, ij} \times \frac{C_j}{100}$$
-Därefter körs **IPF (raking)** separat på båda matriserna mot de kända marginalerna $R$ (radsummor) och $C$ (kolumnsummor) tills konvergens uppnås:
-* $M_1 = \text{IPF}(T_1, R, C)$
-* $M_2 = \text{IPF}(T_2, R, C)$
+Om bättre underlag för **samma korstabell** publiceras ersätts den tidigare tabellen i samma fil. Dokumentera nytt underlag och ändrade beräkningsval i studiemappens README; Git-historiken bevarar äldre rekonstruktioner. Skapa en ny fil för en annan variabelkorsning eller ett annat urval som ska finnas kvar sida vid sida. Där källor eller metoduppgifter ännu inte är kända ska det framgå öppet i studiemappens README.
 
-*IPF minimerar Kullback-Leibler-divergensen mot utgångsmatrisen, vilket garanterar att den inre associativa strukturen (oddskvoterna) förblir opåverkad.*
-
-#### Steg 2: Medelvärdesbildning (Syntes)
-Eftersom tabellerna i rapporterna är tryckta med avrundade procenttal (ofta 1 decimal, ibland heltal) har de oberoende avrundningsbrus. Genom att ta medelvärdet elimineras detta brus:
-$$M_{\text{medel}} = \frac{M_1 + M_2}{2}$$
-*(Om bara en procenttabell fanns, som 2010, sätts $M_{\text{medel}} = M_1$).*
-
-#### Steg 3: Slutlig raking
-$M_{\text{medel}}$ rakas en sista gång mot $R$ och $C$ för att säkerställa fullständig numerisk överensstämmelse mot marginalerna ner till maskinprecision ($< 10^{-12}$).
-
-#### Steg 4: Biproportionell heltalsavrundning (Controlled Rounding)
-Vanlig avrundning av cellerna till närmaste heltal leder oundvikligen till att marginalsummorna diffar med $\pm 1$ till $3$ personer. För att lösa detta formuleras avrundningen som ett linjärt transportproblem:
-
-$$\min_{X} \sum_{i,j} (X_{ij} - M_{ij})^2$$
-under bivillkoren:
-$$\sum_j X_{ij} = R_i, \quad \sum_i X_{ij} = C_j, \quad \lfloor M_{ij} \rfloor \le X_{ij} \le \lceil M_{ij} \rceil$$
-
-Tack vare total unimodularitet i transportproblemet ger LP-lösningen strikta heltal som garanterar:
-1. Att **varje enskild cell** hamnar på antingen golvet eller taket av sitt reella värde.
-2. Att **samtliga rad- och kolumnsummor stämmer exakt** mot stickprovet.
-3. Att strukturella nollor bevaras intakta.
-
----
-
-# Promptmall för en ren session
-
-När du startar en ny chatt (och laddar upp bilderna/tabellerna för ett nytt valpar, t.ex. 2002/2006 eller 1998/2002), klistra bara in följande prompt:
-
-```text
-Här är underlag över väljarströmmarna mellan två val, t.ex. riksdagsvalen [ÅR 1] och [ÅR 2], eller samtidiga val på olika nivåer (t.ex. riksdag × kommun eller riksdag × europaparlament) från exempelvis Valundersökningen eller VALU.
-
-Målet är att ta fram den underliggande korstabellen (bytarmatrisen) i faktiskt antal svarande individer (stickprovsantal) via kalibrering (IPF) och biproportionell heltalsavrundning. Rad- och kolumnkategorier behöver inte vara identiska (hantera rektangulära matriser m × n vid t.ex. lokala partier).
-
-GRUNDREGEL ("LÖS PROBLEMET MED DET SOM FINNS"):
-Om underlaget är ofullständigt (t.ex. om den ena marginalen helt saknas), stanna INTE upp och be om mer data. Genomför istället beräkningen pragmatiskt genom att härleda saknade värden matematiskt ur det befintliga materialet enligt instruktionerna nedan.
-
-1. Identifiera underlagstyp och fastställ marginalerna (R och C):
-   Identifiera först vilken typ av underlag som givits:
-   - TYP A (Två korstabeller, t.ex. rad- och kolumnprocent):
-     Hämta radmarginalerna R från radtabellen och kolumnmarginalerna C från kolumntabellen.
-   - TYP B (En korstabell + separat marginalfördelning):
-     Hämta tabellens kända basmarginal (t.ex. R) och hämta den andra marginalen (C) från den separata stickprovsredovisningen (omvandla från % till heltal mot N om nödvändigt).
-   - TYP C (Enbart EN korstabell och inga externa marginaler alls):
-     1. Ta tabellens kända basmarginal (antingen radmarginal R eller kolumnmarginal C) och dess total N.
-     2. Kompensera för tryckta procentavrundningar genom att beräkna initiala cellvärden som M_ij = R_i × (p_ij / ∑_j p_ij) vid radprocent (eller M_ij = C_j × (p_ij / ∑_i p_ij) vid kolumnprocent).
-     3. Härled den saknade marginalen som summorna av de initiala cellvärdena (t.ex. C_j_float = ∑_i M_ij).
-     4. Avrunda den härledda marginalen till heltal med största restens metod (Hamilton) så att totalsumman blir exakt N.
-
-   Harmonisering: Säkerställ alltid att ∑R = ∑C = N. Vid små diskrepanser mellan källor, harmonisera mot kolumntotalen (eller det senaste / primära valet i undersökningen).
-
-2. IPF-kalibrering (Iterative Proportional Fitting):
-   - Vid Typ A (Två tabeller): Tillämpa trestegsraketen (raka tabell 1 och tabell 2 separat mot R och C, beräkna medelvärdet av de två kalibrerade matriserna, och raka slutmatrisen en sista gång mot R och C).
-   - Vid Typ B och C (En tabell): Raka startmatrisen M iterativt mot marginalerna R och C tills full numerisk konvergens uppnås mot bägge marginaler samtidigt.
-
-3. Slutlig heltalsmatris (Controlled Rounding):
-   - Utför en biproportionell heltalsavrundning (controlled rounding via transportproblem/LP) så att varje enskild rad- och kolumnsumma matchar marginalerna R och C exakt på heltalet.
-   - Strukturella nollor (0 % eller tomma celler i källan) SKA bevaras som exakta nollor (0).
-
-Leverera:
-1. Identifierad underlagstyp (A, B eller C) och de fastställda marginalerna R och C.
-2. Den slutliga heltalskorstabellen som en Markdown-tabell samt Markdowntabellen i ett rått kodblock.
-```
